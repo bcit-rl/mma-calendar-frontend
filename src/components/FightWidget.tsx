@@ -11,7 +11,7 @@ interface FightWidgetProps {
 
 const FightWidget = (props: FightWidgetProps) => {
   const [value, setValue] = useState(binarySearch(props.eventData, new Date()));
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   const tabList: Array<ReactNode> = [];

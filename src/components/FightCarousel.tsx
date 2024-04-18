@@ -1,4 +1,3 @@
-import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -14,7 +13,7 @@ const cache : {[key:string] : ReactNode[]} = {}
 
 const FightCarousel = (props: FightCarouselProps) => {
   const [value, setValue] = useState(0);
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   const [fightsList, setFights] = useState<ReactNode[]>([]);
