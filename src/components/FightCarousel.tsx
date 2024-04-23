@@ -1,10 +1,4 @@
-import {
-  CircularProgress,
-  Box,
-  Tab,
-  Tabs,
-  circularProgressClasses,
-} from "@mui/material";
+import { CircularProgress, Box, Tab, Tabs } from "@mui/material";
 import FightTabPanel from "./FightTabPanel";
 import { a11yProps, createFightList } from "../utils/helpers";
 import { useState, useEffect, ReactNode, SyntheticEvent } from "react";
