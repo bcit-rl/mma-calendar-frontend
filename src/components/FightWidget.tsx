@@ -51,6 +51,7 @@ const FightWidget = (props: FightWidgetProps) => {
           {tabList}
         </Tabs>
       </Box>
+
       {tabPanels}
     </Box>
   );
