@@ -32,14 +32,14 @@ function App() {
   }, []);
 
   return (
-    <div className="carousel-container">
+    <>
       {eventList.length !== 0 && (
         <FightWidget
           carouselArray={carouselList}
           eventData={eventList}
         ></FightWidget>
       )}
-    </div>
+    </>
   );
 }
 
