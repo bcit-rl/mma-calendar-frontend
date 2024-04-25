@@ -39,7 +39,7 @@ const FightWidget = (props: FightWidgetProps) => {
   }
 
   return (
-    <Box sx={{ minWidth: 500, maxWidth: 800 }}>
+    <Box sx={{ minWidth: 400, maxWidth: 800 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
