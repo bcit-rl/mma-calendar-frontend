@@ -9,8 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from '@mui/material';
 
-const pages = ["about"];
+const pages = ["About"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -21,6 +22,7 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    
   };
 
 
@@ -42,7 +44,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            UFC Calendar
+            UFC Fights
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -75,7 +77,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link href={"/" + page} variant="body2" textAlign="center" underline="none" color="black">{page}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -95,7 +97,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            UFC Calendar
+            UFC Fights
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
