@@ -3,6 +3,7 @@ import { ReactNode, useState, SyntheticEvent } from "react";
 import { IEventData } from "../utils/Interfaces";
 import { a11yProps, binarySearch } from "../utils/helpers";
 import FightWidgetTabPanel from "./FightWidgetTabPanel";
+import SwipeableViews from "react-swipeable-views-react-18-fix";
 
 interface FightWidgetProps {
   carouselArray?: Array<ReactNode>;
@@ -39,7 +40,7 @@ const FightWidget = (props: FightWidgetProps) => {
   }
 
   return (
-    <Box sx={{ minWidth: 500, maxWidth: 800 }}>
+    <Box sx={{ minWidth: 400, maxWidth: 800 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -52,7 +53,15 @@ const FightWidget = (props: FightWidgetProps) => {
         </Tabs>
       </Box>
 
-      {tabPanels}
+      <SwipeableViews
+        index={value}
+        onChangeIndex={handleChange}
+        containerStyle={{
+          transition: "transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s",
+        }}
+      >
+        {tabPanels}
+      </SwipeableViews>
     </Box>
   );
 };
