@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const pages = ["About"];
 
@@ -77,7 +77,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link href={"/" + page} variant="body2" textAlign="center" underline="none" color="black">{page}</Link>
+                  <Link to={"/" + page} style={{ textDecoration: 'none' , color:"black"}}>{page}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -103,11 +103,10 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                href={"/" + page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link to={"/" + page} style={{ textDecoration: 'none' , color:"White"}}>{page}</Link>
               </Button>
             ))}
           </Box>
