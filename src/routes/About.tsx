@@ -14,6 +14,14 @@ const About = () => {
           search "UFC this weekend" on Google. The app is built using React and Material-UI for the frontend
           and .Net for the backend.
         </Typography>
+        <Typography variant="h4"sx={{ mt:5 }}>
+          Features
+        </Typography>
+        <Typography variant="body1" sx={{ mt:2 }}>
+          The app displays the upcoming and past UFC fights for the current year. The fights are displayed
+          in a card format and are sorted by date. Results are fetched once every 24 hours, so the app may not be up to date
+          with the latest results or scheduled fights.
+        </Typography>
       </Container>
     </>
   );

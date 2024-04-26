@@ -2,7 +2,7 @@ import { CircularProgress, Box, Tab, Tabs } from "@mui/material";
 import FightTabPanel from "./FightTabPanel";
 import { a11yProps, createFightList } from "../utils/helpers";
 import { useState, useEffect, ReactNode, SyntheticEvent } from "react";
-
+import SwipeableViews from "react-swipeable-views-react-18-fix";
 interface FightCarouselProps {
   URL: string;
 }
@@ -14,6 +14,7 @@ const FightCarousel = (props: FightCarouselProps) => {
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
   const [fightsList, setFights] = useState<ReactNode[]>([]);
   const tabLists: ReactNode[] = [];
   const tabPanel: ReactNode[] = [];
@@ -49,7 +50,7 @@ const FightCarousel = (props: FightCarouselProps) => {
       <Tab key={`CarouselTab-${i}`} label={cardSegments[i]} {...a11yProps(i)} />
     );
     tabPanel.push(
-      <FightTabPanel key={`CarouselTabPanel-${i}`} value={value} index={i}>
+      <FightTabPanel key={`CarouselTabPanel-${i}`} value={value} index={i} >
         {fightsList[i]}
       </FightTabPanel>
     );
@@ -59,18 +60,25 @@ const FightCarousel = (props: FightCarouselProps) => {
     <>
       {fightsList.length != 0 ? (
         <>
-          {" "}
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
               value={value}
               onChange={handleChange}
-              variant="scrollable"
+              variant="fullWidth"
               aria-label="basic tabs example"
             >
               {tabLists}
             </Tabs>
           </Box>
-          {tabPanel}
+          <SwipeableViews
+            index={value}
+            onChangeIndex={handleChange}
+            containerStyle={{
+              transition: "transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s",
+            }}
+          >
+            {tabPanel}
+          </SwipeableViews>
         </>
       ) : (
         <Box
@@ -80,6 +88,10 @@ const FightCarousel = (props: FightCarouselProps) => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          style={{
+            overflow: "hidden",
+            overflowY: "hidden" // added scroll
+          }}
         >
           <CircularProgress />
         </Box>
