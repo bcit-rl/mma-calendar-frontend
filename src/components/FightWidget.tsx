@@ -3,7 +3,7 @@ import { ReactNode, useState, SyntheticEvent } from "react";
 import { IEventData } from "../utils/Interfaces";
 import { a11yProps, binarySearch } from "../utils/helpers";
 import FightWidgetTabPanel from "./FightWidgetTabPanel";
-import SwipeableViews from "react-swipeable-views-react-18-fix";
+import SwipeableViews from "react-swipeable-views-react-18-babel-version-fix";
 
 interface FightWidgetProps {
   carouselArray?: Array<ReactNode>;

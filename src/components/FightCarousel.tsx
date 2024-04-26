@@ -2,7 +2,7 @@ import { CircularProgress, Box, Tab, Tabs } from "@mui/material";
 import FightTabPanel from "./FightTabPanel";
 import { a11yProps, createFightList } from "../utils/helpers";
 import { useState, useEffect, ReactNode, SyntheticEvent } from "react";
-import SwipeableViews from "react-swipeable-views-react-18-fix";
+import SwipeableViews from "react-swipeable-views-react-18-babel-version-fix";
 interface FightCarouselProps {
   URL: string;
 }
