@@ -4,6 +4,7 @@ import FighterAvatar from "../components/FighterAvatar";
 import FighterInfo from "../components/FighterInfo";
 import { IEventData, IFight, IFighter } from "./Interfaces";
 import { BASEURL } from "./global_constants";
+import { Divider } from "@mui/material";
 const FIGHT_URL = BASEURL + "api/Fight";
 
 export function a11yProps(index: number) {
@@ -126,12 +127,15 @@ export async function createFightList(EventUrl: string) {
 
     if (fightJSONData.cardSegment == "Main Card") {
       mainCard.push(fight);
+      mainCard.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
     }
     if (fightJSONData.cardSegment == "Prelims") {
       prelims.push(fight);
+      prelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
     }
     if (fightJSONData.cardSegment == "Early Prelims") {
       earlyPrelims.push(fight);
+      earlyPrelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
     }
   }
 

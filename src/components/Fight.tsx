@@ -20,7 +20,7 @@ const Fight = ({
   const dateInstance = new Date(date)
 
   return (
-    <Container sx={{ border: 1, borderColor: "black"}}>
+    <Container>
       <Box>
         <Typography variant="subtitle2">{`${createDateString(dateInstance)}`}</Typography>
         <Typography variant="subtitle1">{weightClass}</Typography>

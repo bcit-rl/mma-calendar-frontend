@@ -1,4 +1,4 @@
-import { CircularProgress, Box, Tab, Tabs } from "@mui/material";
+import { CircularProgress, Box, Tab, Tabs, useTheme } from "@mui/material";
 import FightTabPanel from "./FightTabPanel";
 import { a11yProps, createFightList } from "../utils/helpers";
 import { useState, useEffect, ReactNode, SyntheticEvent } from "react";
@@ -10,11 +10,14 @@ interface FightCarouselProps {
 const cache: { [key: string]: ReactNode[] } = {};
 
 const FightCarousel = (props: FightCarouselProps) => {
+  const theme = useTheme();
   const [value, setValue] = useState(0);
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  };
   const [fightsList, setFights] = useState<ReactNode[]>([]);
   const tabLists: ReactNode[] = [];
   const tabPanel: ReactNode[] = [];
@@ -50,7 +53,7 @@ const FightCarousel = (props: FightCarouselProps) => {
       <Tab key={`CarouselTab-${i}`} label={cardSegments[i]} {...a11yProps(i)} />
     );
     tabPanel.push(
-      <FightTabPanel key={`CarouselTabPanel-${i}`} value={value} index={i} >
+      <FightTabPanel key={`CarouselTabPanel-${i}`} value={value} index={i}>
         {fightsList[i]}
       </FightTabPanel>
     );
@@ -66,13 +69,15 @@ const FightCarousel = (props: FightCarouselProps) => {
               onChange={handleChange}
               variant="fullWidth"
               aria-label="basic tabs example"
+              sx={{ backgroundColor: "#f7f7f8", }}
             >
               {tabLists}
             </Tabs>
           </Box>
           <SwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
             index={value}
-            onChangeIndex={handleChange}
+            onChangeIndex={handleChangeIndex}
             containerStyle={{
               transition: "transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s",
             }}
@@ -84,13 +89,13 @@ const FightCarousel = (props: FightCarouselProps) => {
         <Box
           height={1}
           width={1}
-          mt="25vh"
+          my="45vh"
           display="flex"
           alignItems="center"
           justifyContent="center"
           style={{
             overflow: "hidden",
-            overflowY: "hidden" // added scroll
+            overflowY: "hidden", // added scroll
           }}
         >
           <CircularProgress />

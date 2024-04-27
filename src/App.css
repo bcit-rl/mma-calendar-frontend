@@ -1,5 +1,15 @@
-.carousel-container{
-    display:grid;
-    width: 100%;
-    justify-items: center;
-}
+/* Css for checkmark is here, obtained from https://codepen.io/gliesche/pen/ZQyPeV */
+:root {
+    --borderWidth: 3px;
+    --height: 8px;
+    --width: 3px;
+    --borderColor: white;
+  }
+.check {
+    display: inline-block;
+    transform: rotate(45deg);
+    height: var(--height);
+    width: var(--width);
+    border-bottom: var(--borderWidth) solid var(--borderColor);
+    border-right: var(--borderWidth) solid var(--borderColor);
+  }
