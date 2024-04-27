@@ -24,9 +24,7 @@ export function createFighterInfo(fighterData: IFighter, imageSide: string) {
         />
       }
       imageSide={imageSide}
-      fighterName={`${fighterData.firstName} ${
-        fighterData.nickName ? '"' + fighterData.nickName + '"' : ""
-      } ${fighterData.lastName}`}
+      fighterName={`${fighterData.firstName} ${fighterData.lastName}`}
       fighterRecord={`${fighterData.wins} - ${fighterData.losses} - ${fighterData.draws} - ${fighterData.noContests}`}
     />
   );

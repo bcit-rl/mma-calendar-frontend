@@ -30,7 +30,7 @@ const Fight = ({
         {rightFighter}
       </Box>
       {description && (
-        <Typography variant="subtitle1" color={"green"}>
+        <Typography variant="subtitle1" color="green">
           {description}
         </Typography>
       )}
