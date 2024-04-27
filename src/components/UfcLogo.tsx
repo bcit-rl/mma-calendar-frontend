@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../../public/UFC_logo.svg";
 import { Box } from "@mui/material";
 
