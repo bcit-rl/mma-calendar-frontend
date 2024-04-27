@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, useTheme } from "@mui/material";
 import { ReactNode, useState, SyntheticEvent } from "react";
 import { IEventData } from "../utils/Interfaces";
 import { a11yProps, binarySearch } from "../utils/helpers";
@@ -11,9 +11,14 @@ interface FightWidgetProps {
 }
 
 const FightWidget = (props: FightWidgetProps) => {
+  const theme = useTheme();
   const [value, setValue] = useState(binarySearch(props.eventData, new Date()));
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+  
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
   };
   const tabList: Array<ReactNode> = [];
   const tabPanels: Array<ReactNode> = [];
@@ -40,7 +45,8 @@ const FightWidget = (props: FightWidgetProps) => {
   }
 
   return (
-    <Box sx={{ minWidth: 400, maxWidth: 800 }}>
+    <>
+
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -54,15 +60,18 @@ const FightWidget = (props: FightWidgetProps) => {
       </Box>
 
       <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
-        onChangeIndex={handleChange}
+        onChangeIndex={handleChangeIndex}
         containerStyle={{
           transition: "transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s",
         }}
       >
+        
         {tabPanels}
       </SwipeableViews>
-    </Box>
+
+    </>
   );
 };
 
