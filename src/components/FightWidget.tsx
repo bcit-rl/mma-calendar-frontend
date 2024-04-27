@@ -54,6 +54,7 @@ const FightWidget = (props: FightWidgetProps) => {
           variant="scrollable"
           scrollButtons={true}
           aria-label="basic tabs example"
+          sx={{ backgroundColor: "#efeff0", }}
         >
           {tabList}
         </Tabs>

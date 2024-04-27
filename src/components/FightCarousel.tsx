@@ -69,6 +69,7 @@ const FightCarousel = (props: FightCarouselProps) => {
               onChange={handleChange}
               variant="fullWidth"
               aria-label="basic tabs example"
+              sx={{ backgroundColor: "#f7f7f8", }}
             >
               {tabLists}
             </Tabs>
