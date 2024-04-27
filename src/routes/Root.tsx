@@ -16,7 +16,7 @@ const Root = () => {
         marginTop={2}
         marginBottom={8}
       >
-        <Box sx={{ minWidth: 350, maxWidth: 800, mx: 10 }}>
+        <Box sx={{ minWidth: 350, maxWidth: 800 }}>
           <Paper elevation={4}>
             <Box
               display="flex"
