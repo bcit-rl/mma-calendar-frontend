@@ -25,11 +25,41 @@ export function createFighterInfo(fighterData: IFighter, imageSide: string) {
       }
       imageSide={imageSide}
       fighterName={`${fighterData.firstName} ${fighterData.lastName}`}
-      fighterRecord={`${fighterData.wins} - ${fighterData.losses} - ${fighterData.draws} - ${fighterData.noContests}`}
+      fighterRecord={`${nullToValue(fighterData.wins, 0)} - ${nullToValue(
+        fighterData.losses,
+        0
+      )} - 
+      ${nullToValue(fighterData.draws, 0)} - ${nullToValue(
+        fighterData.noContests,
+        0
+      )}`}
     />
   );
 }
 
+/**
+ * Funciton to handle output of null values. If the value is null, it will return the outputValue otherwise
+ * it will returnt he checkedValue
+ *
+ * @param checkedValue value to be checked
+ * @param outputValue value to be returned in case of null
+ * @returns checkedValue if not null, outputValue if null
+ */
+export function nullToValue(checkedValue: unknown, outputValue: unknown) {
+  return checkedValue == null ? outputValue : checkedValue;
+}
+
+/**
+ * Converts a Date Object into a string value with the format being in the format
+ * "Day Month Date, Time" with time being converted to local time.
+ *
+ * I.e "Sat May 11, 4:00 p.M."
+ *
+ * @param date Date object to be converted to a string
+ * @returns Date as a string
+ *
+ *
+ */
 export function createDateString(date: Date) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthAbbreviations = [
@@ -48,12 +78,11 @@ export function createDateString(date: Date) {
   ];
   const hours = date.getHours() % 12 == 0 ? 12 : date.getHours() % 12;
   const minutes =
-  date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
   const timeString =
     date.getHours() >= 12
       ? `${hours}:${minutes} p.M.`
       : `${hours}:${minutes} a.M.`;
-
 
   return `${daysOfWeek[date.getDay()]} ${
     monthAbbreviations[date.getMonth()]
@@ -125,15 +154,15 @@ export async function createFightList(EventUrl: string) {
 
     if (fightJSONData.cardSegment == "Main Card") {
       mainCard.push(fight);
-      mainCard.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
+      mainCard.push(<Divider key={`Divider-${fightJSONData.fightId}`} />);
     }
     if (fightJSONData.cardSegment == "Prelims") {
       prelims.push(fight);
-      prelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
+      prelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />);
     }
     if (fightJSONData.cardSegment == "Early Prelims") {
       earlyPrelims.push(fight);
-      earlyPrelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />)
+      earlyPrelims.push(<Divider key={`Divider-${fightJSONData.fightId}`} />);
     }
   }
 
