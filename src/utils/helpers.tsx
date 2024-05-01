@@ -2,9 +2,12 @@ import { ReactNode } from "react";
 import Fight from "../components/Fight";
 import FighterAvatar from "../components/FighterAvatar";
 import FighterInfo from "../components/FighterInfo";
+import FightModal from "../components/FightModal";
 import { IEventData, IFight, IFighter } from "./Interfaces";
 import { BASEURL } from "./global_constants";
-import { Divider } from "@mui/material";
+import ModalComparison from "../components/ModalComparison";
+import { Divider} from "@mui/material";
+import FightRecordTable from "../components/FightRecordTable";
 const FIGHT_URL = BASEURL + "api/Fight";
 
 export function a11yProps(index: number) {
@@ -90,17 +93,18 @@ export function createDateString(date: Date) {
 }
 
 /**
- * Given fightData creates a Fight Component
+ * Given fightData creates a Fight Component and wraps it in a fight Modal
  *
  * @param fightData
  * @returns Fight component with data filled out
  */
 export function createFight(fightData: IFight) {
-  const leftFighter: ReactNode = createFighterInfo(fightData.fighterA, "L");
-  const rightFighter: ReactNode = createFighterInfo(fightData.fighterB, "R");
+  const leftFighterData: IFighter = fightData.fighterA;
+  const rightFighterData: IFighter = fightData.fighterB;
+  const leftFighter: ReactNode = createFighterInfo(leftFighterData, "L");
+  const rightFighter: ReactNode = createFighterInfo(rightFighterData, "R");
   const componentKey: string = `${fightData.fighterA.fighterId}-${fightData.fighterB.fighterId}`;
-
-  return (
+  const fight: ReactNode = (
     <Fight
       key={componentKey}
       date={`${fightData.date}Z`}
@@ -116,7 +120,34 @@ export function createFight(fightData: IFight) {
             } :  R${fightData.round} - ${fightData.displayClock} `
           : ""
       }
-    ></Fight>
+    />
+  );
+
+  return (
+    <FightModal key={`modal-${componentKey}`} clickable={fight}>
+      {fight}
+      <Divider></Divider>
+      <ModalComparison
+        key="age-category"
+        leftValue={`${leftFighterData.age}`}
+        rightValue={`${rightFighterData.age}`}
+        category={"Age"}
+      />
+      <ModalComparison
+        key="weight-category"
+        leftValue={`${leftFighterData.weight}`}
+        rightValue={`${rightFighterData.weight}`}
+        category={`Weight`}
+        />
+      <ModalComparison
+        key="height-category"  
+        leftValue={`${leftFighterData.height}`}
+        rightValue={`${rightFighterData.height}`}
+        category={`Height`}
+        />
+      <FightRecordTable FighterId={`${leftFighterData.fighterId}`}/>
+      <FightRecordTable FighterId={`${rightFighterData.fighterId}`}/>
+    </FightModal>
   );
 }
 
