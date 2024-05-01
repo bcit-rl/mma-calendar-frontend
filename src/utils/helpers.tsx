@@ -6,7 +6,7 @@ import FightModal from "../components/FightModal";
 import { IEventData, IFight, IFighter } from "./Interfaces";
 import { BASEURL } from "./global_constants";
 import ModalComparison from "../components/ModalComparison";
-import { Divider} from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import FightRecordTable from "../components/FightRecordTable";
 const FIGHT_URL = BASEURL + "api/Fight";
 
@@ -138,15 +138,17 @@ export function createFight(fightData: IFight) {
         leftValue={`${leftFighterData.weight}`}
         rightValue={`${rightFighterData.weight}`}
         category={`Weight`}
-        />
+      />
       <ModalComparison
-        key="height-category"  
+        key="height-category"
         leftValue={`${leftFighterData.height}`}
         rightValue={`${rightFighterData.height}`}
         category={`Height`}
-        />
-      <FightRecordTable FighterId={`${leftFighterData.fighterId}`}/>
-      <FightRecordTable FighterId={`${rightFighterData.fighterId}`}/>
+      />
+      <Typography> {`${leftFighterData.firstName} ${leftFighterData.lastName}`}</Typography> 
+      <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
+      <Typography> {`${rightFighterData.firstName} ${rightFighterData.lastName}`}</Typography>
+      <FightRecordTable FighterId={`${rightFighterData.fighterId}`} />
     </FightModal>
   );
 }

@@ -39,7 +39,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 /**
- * Converts a string date into 
+ * Converts a string date into
  */
 const stringDateToMDY = (dateString: string) => {
   const monthAbbreviations = [
@@ -56,19 +56,19 @@ const stringDateToMDY = (dateString: string) => {
     "Nov",
     "Dec",
   ];
-  const date = new Date(dateString)
+  const date = new Date(dateString);
 
   return `${
     monthAbbreviations[date.getMonth()]
   } ${date.getDate()}, ${date.getFullYear()}`;
-}
+};
 
 const FightRecordTable = (props: FightRecordTableProps) => {
   const [FightHistory, setFightHistory] = useState<IFightRecord[]>([]);
   const resultColours: Map<string, string> = new Map([
     ["W", "#bbffdd"],
     ["D", "#ccddee"],
-    ["L", "#ffe3e3"]
+    ["L", "#ffe3e3"],
   ]);
   useEffect(() => {
     const FillFightData = async () => {
@@ -87,45 +87,57 @@ const FightRecordTable = (props: FightRecordTableProps) => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 200 }} size="small" aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Res.</StyledTableCell>
-            <StyledTableCell align="center">Opponent</StyledTableCell>
-            <StyledTableCell align="center">Method</StyledTableCell>
-            <StyledTableCell align="center">Event</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Round</StyledTableCell>
-            <StyledTableCell align="center">Time</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {FightHistory &&
-            FightHistory.map((row: IFightRecord) => (
-              <StyledTableRow
-                key={`${row.opponent}-${row.date}`}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell
-                  align="center"
-                  component="th"
-                  scope="row"
-                  sx={{ backgroundColor:`${resultColours.has(row.result) ? resultColours.get(row.result) : "grey"}` }}
+    <Paper sx={{ overflowY:"auto", height:.3 }}>
+      <TableContainer sx={{ overflowX:"initial" }}>
+        <Table size="small" aria-label="simple table" stickyHeader>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Res.</StyledTableCell>
+              <StyledTableCell align="center">Opponent</StyledTableCell>
+              <StyledTableCell align="center">Method</StyledTableCell>
+              <StyledTableCell align="center">Event</StyledTableCell>
+              <StyledTableCell align="center">Date</StyledTableCell>
+              <StyledTableCell align="center">Round</StyledTableCell>
+              <StyledTableCell align="center">Time</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {FightHistory &&
+              FightHistory.map((row: IFightRecord) => (
+                <StyledTableRow
+                  key={`${row.opponent}-${row.date}`}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  {row.result}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.opponent}</StyledTableCell>
-                <StyledTableCell align="center">{row.method}</StyledTableCell>
-                <StyledTableCell align="center">{row.event}</StyledTableCell>
-                <StyledTableCell align="center">{`${stringDateToMDY(row.date)}`}</StyledTableCell>
-                <StyledTableCell align="center">{row.round}</StyledTableCell>
-                <StyledTableCell align="center">{row.time}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                  <StyledTableCell
+                    align="center"
+                    component="th"
+                    scope="row"
+                    sx={{
+                      backgroundColor: `${
+                        resultColours.has(row.result)
+                          ? resultColours.get(row.result)
+                          : "grey"
+                      }`,
+                    }}
+                  >
+                    {row.result}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.opponent}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.method}</StyledTableCell>
+                  <StyledTableCell align="center">{row.event}</StyledTableCell>
+                  <StyledTableCell align="center">{`${stringDateToMDY(
+                    row.date
+                  )}`}</StyledTableCell>
+                  <StyledTableCell align="center">{row.round}</StyledTableCell>
+                  <StyledTableCell align="center">{row.time}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 };
 

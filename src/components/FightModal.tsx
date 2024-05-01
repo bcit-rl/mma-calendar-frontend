@@ -14,14 +14,14 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   minWidth: 350,
-  width: 1,
+  width: 0.7,
+  height:"90vh",
   maxWidth: 800,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-
 
 const FightModal = ({ clickable, children }: FightModalProps) => {
   const [open, setOpen] = React.useState(false);
@@ -31,16 +31,16 @@ const FightModal = ({ clickable, children }: FightModalProps) => {
   return (
     <>
       <Box onClick={handleOpen}>{clickable}</Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {children}
-        </Box>
-      </Modal>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>{children}</Box>
+          </Modal>
+
     </>
   );
 };
