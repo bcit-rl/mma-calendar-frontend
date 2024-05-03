@@ -6,7 +6,7 @@ import FightModal from "../components/FightModal";
 import { IEventData, IFight, IFighter } from "./Interfaces";
 import { BASEURL } from "./global_constants";
 import ModalComparison from "../components/ModalComparison";
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import FightRecordTable from "../components/FightRecordTable";
 const FIGHT_URL = BASEURL + "api/Fight";
 

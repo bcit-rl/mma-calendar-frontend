@@ -1,6 +1,5 @@
 import { Container, Typography } from "@mui/material";
 import AppBar from "../components/AppBar.tsx";
-import FightRecordTable from "../components/FightRecordTable.tsx";
 
 const About = () => {
 

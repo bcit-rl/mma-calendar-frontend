@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import * as React from "react";
 
 interface ModalComparisonProps{
     leftValue: string;
