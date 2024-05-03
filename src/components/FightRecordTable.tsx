@@ -87,7 +87,7 @@ const FightRecordTable = (props: FightRecordTableProps) => {
   }, []);
 
   return (
-    <Paper sx={{ overflowY:"auto", height:.3 }}>
+    <Paper sx={{ overflowY:"auto", height:1 }}>
       <TableContainer sx={{ overflowX:"initial" }}>
         <Table size="small" aria-label="simple table" stickyHeader>
           <TableHead>

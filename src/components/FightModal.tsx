@@ -13,14 +13,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  minWidth: 350,
+  minWidth: 350, 
+  maxWidth: 800,
   width: 0.7,
   height:"90vh",
-  maxWidth: 800,
+  minHeight: 500,
+  maxHeight: 700,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 const FightModal = ({ clickable, children }: FightModalProps) => {

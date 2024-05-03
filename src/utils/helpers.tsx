@@ -6,7 +6,7 @@ import FightModal from "../components/FightModal";
 import { IEventData, IFight, IFighter } from "./Interfaces";
 import { BASEURL } from "./global_constants";
 import ModalComparison from "../components/ModalComparison";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 import FightRecordTable from "../components/FightRecordTable";
 const FIGHT_URL = BASEURL + "api/Fight";
 
@@ -145,10 +145,43 @@ export function createFight(fightData: IFight) {
         rightValue={`${rightFighterData.height}`}
         category={`Height`}
       />
-      <Typography> {`${leftFighterData.firstName} ${leftFighterData.lastName}`}</Typography> 
-      <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
-      <Typography> {`${rightFighterData.firstName} ${rightFighterData.lastName}`}</Typography>
-      <FightRecordTable FighterId={`${rightFighterData.fighterId}`} />
+      <Divider />
+      <Box height={0.6} sx={{ display: { xs: "flex", sm: "flex", md: "None" }, justifyContent: "space-around", flexDirection:"row"}}>
+        <Box display="flex" flexDirection="column" width={0.45}>
+          <Typography variant="body1">
+            {`${leftFighterData.firstName} ${leftFighterData.lastName}`}
+          </Typography>
+          <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
+        </Box>
+        <Divider orientation="vertical" sx={{ mx: 1 }} />
+        <Box display="flex" flexDirection={"column"} width={0.45}>
+          <Typography variant="body1">
+            {`${rightFighterData.firstName} ${rightFighterData.lastName}`}
+          </Typography>
+          <FightRecordTable FighterId={`${rightFighterData.fighterId}`} />
+        </Box>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        height={0.6}
+        sx={{ display: { xs: "None", sm: "None" ,md:"flex"} }}
+      >
+        <Box display="flex" flexDirection="column" width={0.5}>
+          <Typography variant="body1">
+            {" "}
+            {`${leftFighterData.firstName} ${leftFighterData.lastName}`}
+          </Typography>
+        </Box>
+        <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
+        <Box display="flex" flexDirection={"column"} width={0.5}>
+          <Typography variant="body1">
+            {" "}
+            {`${rightFighterData.firstName} ${rightFighterData.lastName}`}
+          </Typography>
+        </Box>
+        <FightRecordTable FighterId={`${rightFighterData.fighterId}`} />
+      </Box>
     </FightModal>
   );
 }
