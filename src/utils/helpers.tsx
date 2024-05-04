@@ -148,16 +148,10 @@ export function createFight(fightData: IFight) {
       <Divider />
       <Box height={0.6} sx={{ display: { xs: "flex", sm: "flex", md: "None" }, justifyContent: "space-around", flexDirection:"row"}}>
         <Box display="flex" flexDirection="column" width={0.45}>
-          <Typography variant="body1">
-            {`${leftFighterData.firstName} ${leftFighterData.lastName}`}
-          </Typography>
           <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
         </Box>
         <Divider orientation="vertical" sx={{ mx: 1 }} />
         <Box display="flex" flexDirection={"column"} width={0.45}>
-          <Typography variant="body1">
-            {`${rightFighterData.firstName} ${rightFighterData.lastName}`}
-          </Typography>
           <FightRecordTable FighterId={`${rightFighterData.fighterId}`} />
         </Box>
       </Box>
@@ -167,14 +161,14 @@ export function createFight(fightData: IFight) {
         height={0.6}
         sx={{ display: { xs: "None", sm: "None" ,md:"flex"} }}
       >
-        <Box display="flex" flexDirection="column" width={0.5}>
+        <Box display="flex" alignItems="center" flexDirection="column" >
           <Typography variant="body1">
             {" "}
             {`${leftFighterData.firstName} ${leftFighterData.lastName}`}
           </Typography>
         </Box>
         <FightRecordTable FighterId={`${leftFighterData.fighterId}`} />
-        <Box display="flex" flexDirection={"column"} width={0.5}>
+        <Box display="flex" alignItems="center" flexDirection={"column"}>
           <Typography variant="body1">
             {" "}
             {`${rightFighterData.firstName} ${rightFighterData.lastName}`}

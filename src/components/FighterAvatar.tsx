@@ -6,14 +6,14 @@ interface FighterAvatarProps {
 
 const FighterAvatar = (props: FighterAvatarProps) => {
   return (
-    <Box>
+    <>
       <Avatar
         src={props.src}
         sx={{
           width: 55,
           height: 55,
           border: 2,
-          margin: "0px 15px 0px",
+          margin: "0px 5px 0px",
           borderColor: props.Winner ? "Green" : "#efeff0",
         }}
       />
@@ -32,14 +32,14 @@ const FighterAvatar = (props: FighterAvatarProps) => {
             </Box>
           }
           sx={{
-            transform: "translate(65px, -20px)",
+            transform: "translate(-10px, 20px)",
             "& .MuiBadge-badge": { height: 18, minWidth: 18 },
           }}
         ></Badge>
       ) : (
         ""
       )}
-    </Box>
+    </>
   );
 };
 
