@@ -23,12 +23,12 @@ const FighterInfo = ({
     >
       {imageSide === "L" && image}
       <Box textAlign={imageSide === "L" ? "start" : "end"}>
-        <Typography variant="body1" sx={{fontSize: {xs:"0.8em" ,sm:"1em"}, marginBottom: "5px" }}>
+        <Typography variant="body1" sx={{fontSize: {xs:"0.7em" ,sm:"1em"}, marginBottom: "5px" }}>
           {fighterName}
         </Typography>
         <Typography
           variant="body1"
-          sx={{ color: "Grey", fontSize: {xs:"0.7em" ,sm:"0.8em"} , marginTop: "5px" }}
+          sx={{ color: "Grey", fontSize: {xs:"0.65em" ,sm:"0.8em"} , marginTop: "5px" }}
         >
           {fighterRecord}
         </Typography>
