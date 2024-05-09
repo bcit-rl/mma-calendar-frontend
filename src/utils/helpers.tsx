@@ -198,20 +198,11 @@ export async function createFightList(EventUrl: string) {
   const mainCard: ReactNode[] = [];
   const prelims: ReactNode[] = [];
   const earlyPrelims: ReactNode[] = [];
-
   for (const fightData of EventData.fights) {
     const fightDataResponse = await fetch(FIGHT_URL + `/${fightData.fightId}`);
     const fightJSONData = await fightDataResponse.json();
-
-    if (
-      fightJSONData.method == null &&
-      new Date(fightJSONData.date) < new Date()
-    ) {
-      continue;
-    }
-
+    
     const fight = await createFight(fightJSONData);
-
     if (fightJSONData.cardSegment == "Main Card") {
       mainCard.push(fight);
       mainCard.push(<Divider key={`Divider-${fightJSONData.fightId}`} />);
@@ -236,7 +227,6 @@ export async function createFightList(EventUrl: string) {
   if (earlyPrelims.length > 0) {
     fightList.push(earlyPrelims);
   }
-
   return fightList;
 }
 
