@@ -180,6 +180,14 @@ export function createFight(fightData: IFight) {
   );
 }
 
+export function cmpToCurrentDateIgnoreHours(checkedDate: Date){
+  checkedDate.setUTCHours(0,0,0,0)
+  const currentDate = new Date()
+  currentDate.setUTCHours(0,0,0,0)
+
+  return checkedDate < currentDate
+}
+
 /**
  * Creates the list of fights to be put in an event. The data is obtained through a GET request
  * from the requested URL. The list of fights is a 2d array structured like so
@@ -201,6 +209,15 @@ export async function createFightList(EventUrl: string) {
   for (const fightData of EventData.fights) {
     const fightDataResponse = await fetch(FIGHT_URL + `/${fightData.fightId}`);
     const fightJSONData = await fightDataResponse.json();
+   
+    
+    if (
+      fightJSONData.method == null && 
+      cmpToCurrentDateIgnoreHours(new Date(fightJSONData.date))
+    ) {
+      continue;
+    }
+
     
     const fight = await createFight(fightJSONData);
     if (fightJSONData.cardSegment == "Main Card") {
